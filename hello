@@ -1,0 +1,9 @@
+class SayHello(){
+	constructor(){
+	return;
+	};
+
+  sayHey(){
+  return 'Hello World';
+  }
+}
