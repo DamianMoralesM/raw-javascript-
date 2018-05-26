@@ -58,7 +58,9 @@ function createImage(objetoImagen){
     image.id=objetoImagen.id;
     image.src=objetoImagen.src;
     image.alt=objetoImagen.alt;
-    image.setAttribute("onclick","count;");
+    image.setAttribute("onclick","count(this)");
+    image.classList.add("img-thumbnail");
+    image.classList.add("rounded");
 
     return image;
 
@@ -83,11 +85,13 @@ fetch('data.json')
 */
 /*  the image has to have as id pic1, pic2 and its counter counter1,counter2 . Follwing this everything will work*/
   function count(imagen){
-  		var nroImg = imagen.id.charAt(3);
-  		var counter = document.getElementById("counter"+nroImg);
-  		var text = parseFloat(counter.innerText) + 1;
-  		counter.innerText = text;
-
+  		nroImg = imagen.id.charAt(3);
+      imagesList[nroImg -1].count();
+  		var text = imagesList[nroImg - 1].counter;
+  	   for (var i = 0; i <= imagesList.length - 1; i++) {
+         console.log("Imagen " + imagesList[i].id, imagesList[i].counter );
+        } 
+       
   }
 
 
@@ -99,7 +103,8 @@ fetch('data.json')
   		 if (imagesList[i].idProxy == imagen.id){
   			item = createImage(imagesList[i]);
 
-  			 document.getElementById('place2').appendChild(item, document.getElementById('place2').firstChild); 
+  			 document.getElementById('place2').replaceChild(item, document.getElementById('place2').firstChild); 
+        
   		}
   		
   	} 
