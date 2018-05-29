@@ -10,7 +10,7 @@ but we have two diferents ids , id for the one in placed in place1,place2 and pl
 and idProxy for the one in the column
 
 */
-
+//random function that throws numbers between 1 and 3 Math.floor((Math.random()*3) + 1);
 
 class Imagen {
 
@@ -66,6 +66,12 @@ function createImage(objetoImagen){
 
 
  }
+
+
+ function selectPosition(){
+    return Math.floor((Math.random()*3) + 1);
+ }
+  
 		
 /*	
 fetch('data.json')
@@ -87,24 +93,29 @@ fetch('data.json')
   function count(imagen){
   		nroImg = imagen.id.charAt(3);
       imagesList[nroImg -1].count();
-  		var text = imagesList[nroImg - 1].counter;
+  		var number = imagesList[nroImg - 1].counter; //get image counter
   	   for (var i = 0; i <= imagesList.length - 1; i++) {
          console.log("Imagen " + imagesList[i].id, imagesList[i].counter );
         } 
-       
+        /* what we do here is traverse the DOM looking for the parent of image and the counter located in the h4*/
+      imagen.parentElement.getElementsByTagName("h4")[0].getElementsByTagName("p")[0].innerHTML=number;
   }
 
 
 
   function render(imagen){
-     	
+ 
   	for (var i = 0 ; i <= imagesList.length - 1; i++) {
   		
   		 if (imagesList[i].idProxy == imagen.id){
   			item = createImage(imagesList[i]);
 
+
+        /* future we will have a function to choose the place the image*/
   			 document.getElementById('place2').replaceChild(item, document.getElementById('place2').firstChild); 
-        
+         
+        /* when render() is fired we have to update the counter*/
+        document.getElementById('place2').getElementsByTagName("h4")[0].getElementsByTagName("p")[0].innerHTML=imagesList[i].counter;
   		}
   		
   	} 
